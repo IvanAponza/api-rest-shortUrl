@@ -14,7 +14,7 @@ app.use(express.json());
 
 
 //ROUTES
-app.use('/api', authRouter);
+app.use('/api/auth', authRouter);
 
 //INITIALIZATION THE SERVER
 app.listen(PORT, () => {
