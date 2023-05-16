@@ -44,5 +44,10 @@ export const login = async (req, res) => {
 };
 
 export const infoUser = async (req, res) => {
-    res.json({user: 'correo@mail.com'});
+  try {
+    const user = await User.findById(req.uid).lean();//devuelve obj simple lean
+    return res.json({email: user.email, uid: user.id});    
+  } catch (error) {
+    return res.status(500).json({error: "Error de servidor" });
+  }
 }
