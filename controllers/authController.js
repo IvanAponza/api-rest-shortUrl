@@ -1,5 +1,5 @@
+import { generateToken } from "../helpers/tokenManager.js";
 import { User } from "../models/User.js";
-import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   //console.log(req.body)
@@ -33,10 +33,10 @@ export const login = async (req, res) => {
     if (!respuestaPassword)
       return res.status(403).json({ error: "Contraseña incorrecta" });
 
-    //Generar l token JWT
-    const token = jwt.sign({ uid: user._id }, process.env.JWT_SECRET);
+    //Generar token JWT
+    const {token, expiresIn} = generateToken(user.id)
 
-    return res.json({ token });
+    return res.json({ token, expiresIn });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: "Error de servidor" });
