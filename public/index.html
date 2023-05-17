@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+
+<body>
+    <!-- <form id="form">
+        <input type="email" value="joselodev@mail.com" id="email">
+        <input type="password" value="123456" id="password">
+        <button type="submit">Entrar</button>
+    </form> -->
+    <form id="frm">
+        <input type="email" value="joselodev@mail.com" id="email" />
+        <input type="password" value="123456" id="password" autocomplete="on" />
+        <button type="submit">Acceder</button>
+    </form>
+
+    <script>
+        const frm = document.getElementById("frm");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+
+        frm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            try {
+                // console.log(email.value);
+                // console.log(password.value);
+                const res = await fetch("/api/auth/login", {
+                    method: 'POST',
+                    Headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email.value, password: password.value })
+                })
+                //console.log(res) 
+                // console.log(res.ok, res.status);
+
+                // const data = await res.json();
+                // console.log(data);
+
+            } catch (error) {
+                console.log(error);
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -4,7 +4,7 @@ export const requireToken = (req, res, next) => {
   try {
     //console.log(req.headers);
     let token = req.headers?.authorization;
-    console.log(token);
+    //console.log(token);
     if (!token) throw new Error("No existe el token el header usa Bearer");
 
     token = token.split(" ")[1];//separa el format Bearer del token
