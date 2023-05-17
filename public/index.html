@@ -9,11 +9,6 @@
 </head>
 
 <body>
-    <!-- <form id="form">
-        <input type="email" value="joselodev@mail.com" id="email">
-        <input type="password" value="123456" id="password">
-        <button type="submit">Entrar</button>
-    </form> -->
     <form id="frm">
         <input type="email" value="joselodev@mail.com" id="email" />
         <input type="password" value="123456" id="password" autocomplete="on" />
@@ -30,18 +25,22 @@
             try {
                 // console.log(email.value);
                 // console.log(password.value);
+
                 const res = await fetch("/api/auth/login", {
-                    method: 'POST',
-                    Headers: {
-                        'Content-Type': 'application/json'
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ email: email.value, password: password.value })
+                    body: JSON.stringify({
+                        email: email.value, 
+                        password: password.value 
+                    })
                 })
                 //console.log(res) 
-                // console.log(res.ok, res.status);
+                console.log(res.ok, res.status);
 
-                // const data = await res.json();
-                // console.log(data);
+                const data = await res.json();
+                console.log(data);
 
             } catch (error) {
                 console.log(error);
