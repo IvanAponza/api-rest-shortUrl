@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta protegida</title>
+</head>
+<body>
+    <h1>Ruta protegida</h1>
+    <did>
+        <h2 id="app">Email: </h2>
+    </did>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", async e => {
+            try {
+
+                const resToken = await fetch('/api/auth/refresh', {
+                    method: "GET",
+                    credentials: 'include',
+                });
+                //saca el token del refreshToken
+                const {token} = await resToken.json();
+                
+                const res = await fetch('/api/auth/protected', {
+                    method: "GET",
+                    headers:{
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer " + token,
+                    },
+                    // credentials: 'include',
+                })
+
+                console.log(res.ok, res.status);
+                const data = await res.json();
+                
+                if(res.ok){
+                    document.getElementById("app").textContent=data.email;
+                }
+                
+                console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
+        })
+
+    </script>
+    
+</body>
+</html>
