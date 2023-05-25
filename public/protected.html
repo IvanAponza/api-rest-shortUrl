@@ -10,9 +10,23 @@
     <h1>Ruta protegida</h1>
     <did>
         <h2 id="app">Email: </h2>
+        <button id="logout">Cerrar Sesion</button>
     </did>
 
     <script>
+
+        const logout = document.getElementById("logout");
+        logout.addEventListener("click", async () => {
+            const res = await fetch('/api/auth/logout', {
+                method: "GET",
+                // headers:{
+                //     "Content-Type": "application/json",
+                //     Authorization: "Bearer " + token,
+                // },
+                // credentials: 'include',
+            })
+            console.log(res)
+        });
 
         document.addEventListener("DOMContentLoaded", async e => {
             try {
