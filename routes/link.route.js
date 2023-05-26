@@ -13,7 +13,8 @@ const router = Router();
 //DELETE /api/links     create links
 
 router.get('/', requireToken, getLinks);
-router.get('/:id', requireToken, getLink);
+router.get('/:nanoLink', getLink);
+//router.get('/:id', requireToken, getLink); crud tradicional
 router.post('/', requireToken, bodyLinkValidator, createLink);
 router.delete('/:id', requireToken, paramLinkValidator, removeLink);
 router.patch('/:id', requireToken, paramLinkValidator, bodyLinkValidator, updateLink)

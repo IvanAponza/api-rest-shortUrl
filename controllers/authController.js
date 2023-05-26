@@ -29,6 +29,7 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
+  console.log('entro aqui')
   try {
     const { email, password } = req.body;
 
