@@ -20,7 +20,8 @@ const whiteList = [process.env.ORIGIN1, process.env.ORIGIN2]; //indica todo los 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (whiteList.includes(origin)) {
+        console.log('Pup =>', origin);
+      if (!origin || whiteList.includes(origin)) {
         return callback(null, origin);
       }
       return callback("Error de Cors origin: " + origin + "No Autorizado!");
